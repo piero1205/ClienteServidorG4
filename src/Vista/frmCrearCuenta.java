@@ -4,6 +4,10 @@
  */
 package Vista;
 
+import Modelo.Sentencias;
+import Modelo.Usuarios;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Jason
@@ -53,6 +57,11 @@ public class frmCrearCuenta extends javax.swing.JFrame {
         jLabel5.setText("Crear Cuenta");
 
         btnCrearCuenta.setText("Crear Cuenta");
+        btnCrearCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearCuentaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -109,6 +118,29 @@ public class frmCrearCuenta extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCrearCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCuentaActionPerformed
+        // TODO add your handling code here:
+        String nombre = txtCrearNombre.getText();
+        String correo = txtCrearCorreo.getText();
+        String contra = txtCrearContra.getText();
+        String rol = cmbRolCrearCuenta.getSelectedItem().toString();
+        
+        Usuarios usuario = new Usuarios(nombre, rol, correo, contra);
+        
+        Sentencias s = new Sentencias();
+        boolean registrado = s.agregarUsuario(usuario);
+        
+        if(registrado){
+            JOptionPane.showMessageDialog(null, "Registrado correctamente");
+            txtCrearNombre.setText("");
+            txtCrearCorreo.setText("");
+            txtCrearContra.setText("");
+            cmbRolCrearCuenta.setSelectedIndex(0);      
+        }else{
+            JOptionPane.showMessageDialog(null,"Error al registrar");           
+        }      
+    }//GEN-LAST:event_btnCrearCuentaActionPerformed
 
     /**
      * @param args the command line arguments
