@@ -4,6 +4,9 @@
  */
 package Vista;
 
+import Modelo.Sentencias;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Jason
@@ -118,10 +121,30 @@ public class frmInicioSesion extends javax.swing.JFrame {
 
     private void btnIniciarSesiónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesiónActionPerformed
         // TODO add your handling code here:
+        String nombre = txtInicioUsuario.getText();
+        String contra = txtInicioContra.getText();
+        
+        Sentencias s = new Sentencias();
+        String rol = s.loginUsuario(nombre, contra);
+        
+        if(rol != null){
+            if(rol.equals("Administrador")){
+                JOptionPane.showMessageDialog(null,"Bienvenido Administrador");
+                new frmAdministradorhub().setVisible(true);
+                
+            }else{
+                JOptionPane.showMessageDialog(null,"Bienvenido Colaborador");
+                new frmColaboradorhub().setVisible(true);
+            }
+            this.dispose();            
+        }else{
+            JOptionPane.showMessageDialog(null,"Usuario o Contraseña incorrectos");      
+        }       
     }//GEN-LAST:event_btnIniciarSesiónActionPerformed
 
     private void btnCrearCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCuentaActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnCrearCuentaActionPerformed
 
     /**
