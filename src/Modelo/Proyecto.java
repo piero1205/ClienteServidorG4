@@ -10,13 +10,13 @@ package Modelo;
  */
 public class Proyecto {
     private double costo;
-    private String riesgo;
     private Tarea tarea;
+    private Riesgo riesgo;
 
-    public Proyecto(double costo, String riesgo, Tarea tarea) {
-        this.costo = 0.0d;
-        this.riesgo = "";
+    public Proyecto(double costo, Tarea tarea, Riesgo riesgo) {
+        this.costo = costo;
         this.tarea = tarea;
+        this.riesgo = riesgo;
     }
 
     public double getCosto() {
@@ -27,20 +27,20 @@ public class Proyecto {
         this.costo = costo;
     }
 
-    public String getRiesgo() {
-        return riesgo;
-    }
-
-    public void setRiesgo(String riesgo) {
-        this.riesgo = riesgo;
-    }
-
     public Tarea getTarea() {
         return tarea;
     }
 
     public void setTarea(Tarea tarea) {
         this.tarea = tarea;
+    }
+
+    public Riesgo getRiesgo() {
+        return riesgo;
+    }
+
+    public void setRiesgo(Riesgo riesgo) {
+        this.riesgo = riesgo;
     }
     
     
