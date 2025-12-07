@@ -11,14 +11,37 @@ import java.time.LocalDate;
  * @author Carrillo Díaz
  */
 public class Tarea {
+    private int id;
+    private String nombre;
     private String estado;
-    private String comentario;
-    private LocalDate fechaVencimiento;//yyyy-mm-dd
+    private LocalDate fechaVencimiento;
 
-    public Tarea(String estado, String comentario, LocalDate fechaVencimiento) {
-        this.estado = "";
-        this.comentario = "";
+    public Tarea(int id, String nombre, String estado, LocalDate fechaVencimiento) {
+        this.id = id;
+        this.nombre = nombre;
+        this.estado = estado;
         this.fechaVencimiento = fechaVencimiento;
+    }
+
+    public Tarea(String estado, LocalDate fechaVencimiento) {
+        this.estado = estado;
+        this.fechaVencimiento = fechaVencimiento;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getEstado() {
@@ -29,14 +52,6 @@ public class Tarea {
         this.estado = estado;
     }
 
-    public String getComentario() {
-        return comentario;
-    }
-
-    public void setComentario(String comentario) {
-        this.comentario = comentario;
-    }
-
     public LocalDate getFechaVencimiento() {
         return fechaVencimiento;
     }
@@ -44,7 +59,4 @@ public class Tarea {
     public void setFechaVencimiento(LocalDate fechaVencimiento) {
         this.fechaVencimiento = fechaVencimiento;
     }
-
-    
-    
 }
