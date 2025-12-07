@@ -4,6 +4,8 @@
  */
 package Modelo;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author Carrillo Díaz
@@ -11,12 +13,12 @@ package Modelo;
 public class Tarea {
     private String estado;
     private String comentario;
-    private String fechaVencimiento;
+    private LocalDate fechaVencimiento;//yyyy-mm-dd
 
-    public Tarea(String estado, String comentario, String fechaVencimiento) {
+    public Tarea(String estado, String comentario, LocalDate fechaVencimiento) {
         this.estado = "";
         this.comentario = "";
-        this.fechaVencimiento = "";
+        this.fechaVencimiento = fechaVencimiento;
     }
 
     public String getEstado() {
@@ -35,13 +37,14 @@ public class Tarea {
         this.comentario = comentario;
     }
 
-    public String getFechaVencimiento() {
+    public LocalDate getFechaVencimiento() {
         return fechaVencimiento;
     }
 
-    public void setFechaVencimiento(String fechaVencimiento) {
+    public void setFechaVencimiento(LocalDate fechaVencimiento) {
         this.fechaVencimiento = fechaVencimiento;
     }
+
     
     
 }

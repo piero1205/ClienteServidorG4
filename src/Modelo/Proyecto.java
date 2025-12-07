@@ -4,19 +4,23 @@
  */
 package Modelo;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Carrillo Díaz
  */
 public class Proyecto {
     private double costo;
-    private String riesgo;
-    private Tarea tarea;
+    private ArrayList <Tarea> tareas;
+    private ArrayList <Riesgo> riesgos;
 
-    public Proyecto(double costo, String riesgo, Tarea tarea) {
-        this.costo = 0.0d;
-        this.riesgo = "";
-        this.tarea = tarea;
+    public Proyecto(double costo) {
+        this.costo = costo;
+        tareas = new ArrayList<>();
+        riesgos = new ArrayList<>();
     }
 
     public double getCosto() {
@@ -27,21 +31,46 @@ public class Proyecto {
         this.costo = costo;
     }
 
-    public String getRiesgo() {
-        return riesgo;
+    public ArrayList<Tarea> getTareas() {
+        return tareas;
     }
 
-    public void setRiesgo(String riesgo) {
-        this.riesgo = riesgo;
+    public void setTareas(ArrayList<Tarea> tareas) {
+        this.tareas = tareas;
     }
 
-    public Tarea getTarea() {
-        return tarea;
+    public ArrayList<Riesgo> getRiesgos() {
+        return riesgos;
     }
 
-    public void setTarea(Tarea tarea) {
-        this.tarea = tarea;
+    public void setRiesgos(ArrayList<Riesgo> riesgos) {
+        this.riesgos = riesgos;
+    }
+
+    public void insertarTarea(Tarea t){
+        tareas.add(t);
     }
     
+    public void insertarRiesgo(Riesgo r){
+        riesgos.add(r);
+    }
     
+    public void calcularCosto(){
+        double costo = 0.0d;
+        for (int i=0; i<=tareas.size(); i++){
+            if(tareas.get(i).getFechaVencimiento().isAfter(LocalDate.now())){
+                costo += this.costo*0.10;
+            }
+        }
+        this.costo = costo;
+    }
+    
+    public void recordatorio (){
+        for (int i=0; i<=tareas.size(); i++){
+            if(tareas.get(i).getFechaVencimiento().isBefore(LocalDate.now())){
+                JOptionPane.showMessageDialog(null, "Recordatorio\n---------\nLa tarea "+tareas.get(i).getComentario() +" se vence el dia: "+tareas.get(i).getFechaVencimiento());
+            }
+        }
+        
+    }
 }
