@@ -48,6 +48,7 @@ public class ctrlGestionTareas implements ActionListener{
         
         this.registrarProyecto.btnCrearProyecto.addActionListener(this);
         this.registrarTarea.btnCrearTarea.addActionListener(this);
+        this.adminHub.btnAsignarTarea.addActionListener(this);
         
     }
     
