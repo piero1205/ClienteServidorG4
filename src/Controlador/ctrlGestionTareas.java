@@ -36,6 +36,7 @@ public class ctrlGestionTareas implements ActionListener{
     private final frmRegistrarTarea registrarTarea;
     private final frmCostosAdmin consultarCosto;
     private final frmRegistrarRiesgo registrarRiesgo;
+    private final frmAsignarTareaAdmin asignarTareaForm;
     
     public ctrlGestionTareas(Usuarios modelo
                             , Sentencias consultas
@@ -47,6 +48,7 @@ public class ctrlGestionTareas implements ActionListener{
                             , frmCostosAdmin consultarCosto
                             , frmRegistrarRiesgo regRiesgo) {
         
+                            , frmAsignarTareaAdmin asignarTareaAdmin) {
         this.modelo = modelo;
         this.consultas = consultas;
         this.proyectos = consultas.cargarProyectos();
@@ -59,6 +61,7 @@ public class ctrlGestionTareas implements ActionListener{
         this.registrarRiesgo = regRiesgo;
         this.consultarCosto= consultarCosto;
         
+        this.asignarTareaForm = asignarTareaAdmin;
         this.inicioSesion.btnIniciarSesión.addActionListener(this);
         this.inicioSesion.btnCrearCuenta.addActionListener(this);
         this.crearCuenta.btnCrearCuenta.addActionListener(this);
@@ -73,6 +76,12 @@ public class ctrlGestionTareas implements ActionListener{
         
         this.adminHub.btnEvaluarCostos.addActionListener(this);
         this.consultarCosto.btnConsultarCostoAdmin.addActionListener(this);
+        this.adminHub.btnAsignarTarea.addActionListener(this);
+        
+        this.registrarProyecto.btnCrearProyecto.addActionListener(this);
+        this.registrarTarea.btnCrearTarea.addActionListener(this);
+        this.asignarTareaForm.btnAsignar.addActionListener(this);
+        
         
         this.registrarRiesgo.txtImpacto.addActionListener(this);
         
