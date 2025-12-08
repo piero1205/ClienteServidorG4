@@ -13,11 +13,13 @@ import javax.swing.JOptionPane;
  * @author Carrillo Díaz
  */
 public class Proyecto {
+    private String nombre;
     private double costo;
     private ArrayList <Tarea> tareas;
     private ArrayList <Riesgo> riesgos;
 
-    public Proyecto(double costo) {
+    public Proyecto(String nombre, double costo) {
+        this.nombre=nombre;
         this.costo = costo;
         tareas = new ArrayList<>();
         riesgos = new ArrayList<>();
@@ -47,6 +49,15 @@ public class Proyecto {
         this.riesgos = riesgos;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    
     public void insertarTarea(Tarea t){
         tareas.add(t);
     }

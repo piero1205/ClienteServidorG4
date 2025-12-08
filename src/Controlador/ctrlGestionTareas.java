@@ -48,7 +48,7 @@ public class ctrlGestionTareas implements ActionListener{
                     frmAdmin.setVisible(true);
                     frmAdmin.setLocationRelativeTo(null);
                 } else if (rol.equalsIgnoreCase("colaborador")) {
-                    JOptionPane.showMessageDialog(null, "Sesión Iniciada como Admin");
+                    JOptionPane.showMessageDialog(null, "Sesión Iniciada como Colaborador");
                     frmColaboradorhub frmColaborador = new frmColaboradorhub();
                     frmColaborador.setVisible(true);
                     frmColaborador.setLocationRelativeTo(null);
@@ -81,4 +81,5 @@ public class ctrlGestionTareas implements ActionListener{
             }
         }
     }
+    
 }
