@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -368,6 +369,35 @@ public class Sentencias extends Conexion {
                  System.err.println(e); 
              } 
          } 
+    }
+    
+        public ResultSet consultarProyecto(String nombre){
+        ResultSet rs = null;
+        Connection con = getConexion();
+        
+        try{
+            String sql= "SELECT "+
+                    "p.nombre AS proyecto, "
+                    +"p.costo, "
+                    +"t.estado, "
+                    +"t.comentario, "
+                    +"t.fecha, "
+                    +"t.responsable, "
+                    +"r.descripcion AS riesgo, "
+                    +"r.impacto, "
+                    +"FROM proyecto p "
+                    +"LEFT JOIN tareas t ON p.nombre = t.proyecto "
+                    +"LEFT JOIN riesgos r ON p.nombre = r.proyecto "
+                    +"WHERE p.nombre LIKE ?";
+      
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, "%" + nombre + "%");
+            rs = ps.executeQuery();
+            
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Error al consultar proyecto");        
+        }
+        return rs;
     }
 
 
