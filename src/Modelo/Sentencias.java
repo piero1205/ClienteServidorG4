@@ -295,6 +295,29 @@ public class Sentencias extends Conexion {
 
         return filas;
     }
+    
+    public boolean ActualizarTareaColaborador(int id, String estado,String comentario){ 
+         PreparedStatement ps = null; 
+         Connection con = getConexion();
+         String sql = "UPDATE tareas SET estado=?, comentario=? WHERE id=? ";
+         try { 
+             ps = con.prepareStatement(sql); 
+             ps.setString(1, estado); 
+             ps.setString(2, comentario); 
+             ps.setInt(3, id); 
+             
+             ps.execute(); return true; 
+         } catch (SQLException e) { 
+             System.err.println(e); 
+             return false; 
+         } finally { 
+             try { 
+                 con.close(); 
+             } catch (SQLException e) { 
+                 System.err.println(e); 
+             } 
+         } 
+        }
 
 
 }
