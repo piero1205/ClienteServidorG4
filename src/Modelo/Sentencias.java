@@ -318,6 +318,28 @@ public class Sentencias extends Conexion {
              } 
          } 
         }
+    
+    public boolean asignarTarea(int id, String responsable){
+         PreparedStatement ps = null; 
+         Connection con = getConexion();
+         String sql = "UPDATE tareas SET responsable=? WHERE id=? ";
+         try { 
+             ps = con.prepareStatement(sql); 
+             ps.setString(1, responsable); 
+             ps.setInt(2, id); 
+             
+             ps.execute(); return true; 
+         } catch (SQLException e) { 
+             System.err.println(e); 
+             return false; 
+         } finally { 
+             try { 
+                 con.close(); 
+             } catch (SQLException e) { 
+                 System.err.println(e); 
+             } 
+         } 
+    }
 
 
 }
