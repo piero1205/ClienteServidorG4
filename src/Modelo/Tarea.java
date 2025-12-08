@@ -15,17 +15,36 @@ public class Tarea {
     private String nombre;
     private String estado;   
     private String comentario;
+    private String responsable;
 
     private LocalDate fechaVencimiento;
 
-    public Tarea(int id, String nombre, String estado, String Comentario, LocalDate fechaVencimiento) {
+    public Tarea(int id, String nombre, String estado, String Comentario, LocalDate fechaVencimiento, String responsable) {
         this.id = id;
         this.nombre = nombre;
         this.estado = estado;
         this.comentario = Comentario;
         this.fechaVencimiento = fechaVencimiento;
+        this.responsable=responsable;
     }
 
+    public Tarea(int id, String nombre, String estado, String comentario, LocalDate fechaVencimiento) {
+        this.id = id;
+        this.nombre = nombre;
+        this.estado = estado;
+        this.comentario = comentario;
+        this.fechaVencimiento = fechaVencimiento;
+    }
+
+    public String getResponsable() {
+        return responsable;
+    }
+
+    public void setResponsable(String responsable) {
+        this.responsable = responsable;
+    }
+
+    
     public Tarea(String estado, LocalDate fechaVencimiento) {
         this.estado = estado;
         this.fechaVencimiento = fechaVencimiento;

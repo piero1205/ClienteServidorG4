@@ -5,6 +5,7 @@
 package Modelo;
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -91,6 +92,34 @@ public class Sentencias extends Conexion {
                 String contra=rs.getString("contra");
                 
                 listaUsuarios.add(new Usuarios(nombre, rol, correo, contra));
+                        
+            }
+        }catch (SQLException e){
+             Logger.getLogger(Sentencias.class.getName()).log(Level.SEVERE, null,e);
+        }
+        return listaUsuarios;
+    }
+    
+    
+        public ArrayList<Tarea> recorridoTareas(){
+        Connection con=getConexion();
+        ArrayList<Tarea> listaUsuarios=new ArrayList<>();
+        String sql="SELECT proyecto, id, estado, comentario, fecha, responsable from tareas";
+        
+        try{
+            PreparedStatement ps= con.prepareStatement(sql);
+            ResultSet rs=ps.executeQuery();
+            
+            while(rs.next()){
+                String nombre=rs.getString("proyecto");
+                int id=Integer.parseInt(rs.getString("id"));
+                String estado=rs.getString("estado");
+                String comentario=rs.getString("comentario");
+                String fecha=rs.getString("fecha");
+                String responsable=rs.getString("responsable");
+                
+                
+                listaUsuarios.add(new Tarea(id, nombre,estado, comentario, LocalDate.parse(fecha),responsable));
                         
             }
         }catch (SQLException e){

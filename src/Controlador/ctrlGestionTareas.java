@@ -12,6 +12,7 @@ import Vista.*;
 import java.awt.Color;
 import java.awt.event.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComboBox;
@@ -95,11 +96,29 @@ public class ctrlGestionTareas implements ActionListener{
         this.colaboradorHub.btnhubAct.addActionListener(this); 
         this.actTarea.btnActualizar.addActionListener(this);
         llenarTablaAdmin();
+        llenarTablaColaborador();
     }
     
     public void iniciar() {
         inicioSesion.setTitle("Administrador de Proyectos");
         inicioSesion.setLocationRelativeTo(null);
+    }
+    
+        public void llenarTablaColaborador(){
+        DefaultTableModel modelo=(DefaultTableModel) colaboradorHub.tablaColaborador.getModel();
+        ArrayList<Tarea> listaTareas=consultas.recorridoTareas();
+        String datos[]=new String[4];
+        int i=0;
+        DateTimeFormatter formato=DateTimeFormatter.ofPattern("dd/mm/yyyy");
+       for(Tarea juguete:listaTareas){
+           datos[0]=listaTareas.get(i).getNombre();
+           datos[1]=String.valueOf(listaTareas.get(i).getId());
+           datos[2]=listaTareas.get(i).getFechaVencimiento().toString();
+           datos[3]=listaTareas.get(i).getResponsable();
+           i++;
+           modelo.addRow(datos);//add datos a la lista
+       }
+       colaboradorHub.tablaColaborador.setModel(modelo);//incluir en la tabla
     }
     
     public void actionPerformed(ActionEvent e) {
@@ -289,7 +308,7 @@ public class ctrlGestionTareas implements ActionListener{
         
         }
         
-        
+        // actualizar
             if (e.getSource()==colaboradorHub.btnhubAct){ 
             actTarea.setVisible(true);
             actTarea.setLocationRelativeTo(null);
@@ -303,7 +322,7 @@ public class ctrlGestionTareas implements ActionListener{
         boolean completado=consultas.ActualizarTareaColaborador(id, estado, comentario); 
         if (completado==true){ 
             JOptionPane.showMessageDialog(null, "Tarea Actualizada Correctamente"); 
-        
+            llenarTablaColaborador();
         }else{ 
             JOptionPane.showMessageDialog(null, "Tarea no Actualizada");
          }
@@ -383,6 +402,8 @@ public class ctrlGestionTareas implements ActionListener{
         tablaAdmin.setModel(modelo);
 
     }
+    
+
     
 
 

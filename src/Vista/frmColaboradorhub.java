@@ -47,7 +47,7 @@ public class frmColaboradorhub extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Proyecto", "Tarea", "Fecha de Vencimiento", "Colaboradores"
+                "Tarea", "Id", "Fecha de Vencimiento", "Colaboradores"
             }
         ));
         jScrollPane1.setViewportView(tablaColaborador);
