@@ -11,6 +11,7 @@ import Modelo.Usuarios;
 import Vista.*;
 import java.awt.Color;
 import java.awt.event.*;
+import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ public class ctrlGestionTareas implements ActionListener{
     private final frmAsignarTareaAdmin asignarTareaForm;
     private final frmActualizarTareaColaborador actTarea; 
     private final frmColaboradorhub colaboradorHub;
+    private final frmGenerarReporteAdmin reportes;
     
     public ctrlGestionTareas(Usuarios modelo
                             , Sentencias consultas
@@ -52,7 +54,8 @@ public class ctrlGestionTareas implements ActionListener{
                             , frmRegistrarRiesgo regRiesgo
                             , frmAsignarTareaAdmin asignarTareaAdmin
                             , frmActualizarTareaColaborador actTarea
-                            , frmColaboradorhub colaboradorHub) {
+                            , frmColaboradorhub colaboradorHub
+                            , frmGenerarReporteAdmin reportes) {
         this.modelo = modelo;
         this.consultas = consultas;
         this.proyectos = consultas.cargarProyectos();
@@ -69,6 +72,8 @@ public class ctrlGestionTareas implements ActionListener{
         this.colaboradorHub=colaboradorHub;
         
         this.asignarTareaForm = asignarTareaAdmin;
+        
+        this.reportes=reportes;
         this.inicioSesion.btnIniciarSesión.addActionListener(this);
         this.inicioSesion.btnCrearCuenta.addActionListener(this);
         this.crearCuenta.btnCrearCuenta.addActionListener(this);
@@ -94,6 +99,8 @@ public class ctrlGestionTareas implements ActionListener{
         
         this.colaboradorHub.btnhubAct.addActionListener(this); 
         this.actTarea.btnActualizar.addActionListener(this);
+        this.reportes.btnProyectoAConsultar.addActionListener(this);
+        this.adminHub.btnGenerarReporte.addActionListener(this);
         llenarTablaAdmin();
         llenarTablaColaborador();
     }
@@ -345,6 +352,17 @@ public class ctrlGestionTareas implements ActionListener{
          }
         }
         
+        if(e.getSource()==adminHub.btnGenerarReporte){
+            reportes.setVisible(true);
+            reportes.setLocationRelativeTo(null);
+        }
+        
+        if(e.getSource()==reportes.btnProyectoAConsultar){
+            String nombre=reportes.txtProyectoAConsultarAdmin.getText();
+            generarReporte(nombre);
+            
+        }
+        
     }
     
    
@@ -360,6 +378,7 @@ public class ctrlGestionTareas implements ActionListener{
         return null;
     }
     
+
     // Llenar Cronograma
     
     public void llenarTablaAdmin() {
@@ -401,6 +420,76 @@ public class ctrlGestionTareas implements ActionListener{
         tablaAdmin.setModel(modelo);
 
     }
+        public void llenarTablaReportes() {
+        JTable tablaAdmin = this.reportes.tablaAdmin;
+        if (tablaAdmin == null) return;
+
+        // Define encabezados en el mismo orden que obtenerProyectoTareas()
+        String[] columnas = {
+            "Proyecto",
+            "Costo",
+            "Tarea",
+            "Estado",
+            "Responsable",
+            "Fecha Vencimiento",
+            "Comentarios"
+        };
+
+        DefaultTableModel modelo = new DefaultTableModel(columnas, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+
+            @Override
+            public Class<?> getColumnClass(int columnIndex) {
+                switch (columnIndex) {
+                    case 1: return Double.class; // Costo
+                    case 2: return Integer.class; // ID Tarea
+                    default: return String.class;
+                }
+            }
+        };
+
+        List<Object[]> filas = consultas.obtenerCronograma();
+        for (Object[] fila : filas) {
+            modelo.addRow(fila);
+        }
+
+        tablaAdmin.setModel(modelo);
+
+    }
+        
+    public DefaultTableModel generarReporte(String nombreProyecto){
+        
+        String columnas[] = {
+            "Proyecto", "Tarea", "Estado", "Responsable", "Vencimiento", "Riesgo", "Costo", "Comentario"          
+        };
+        
+        DefaultTableModel m = new DefaultTableModel(null, columnas);
+        
+        try{
+            ResultSet rs = consultas.consultarProyecto(nombreProyecto);
+            
+            while (rs.next()) {
+                Object fila[] = {
+                    rs.getString("proyecto"),
+                    rs.getString("tarea"),
+                    rs.getString("estado"),
+                    rs.getString("responsable"),
+                    rs.getString("vencimiento"),
+                    rs.getString("riesgo"),
+                    rs.getString("costo"),
+                    rs.getString("comentario")                                  
+                };
+                m.addRow(fila);          
+            }  
+            reportes.tablaAdmin.setModel(m);
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error en generar reporte");
+        }
+        return m;                    
+    }   
     
 
     
