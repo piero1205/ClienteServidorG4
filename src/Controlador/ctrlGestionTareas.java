@@ -289,7 +289,7 @@ public class ctrlGestionTareas implements ActionListener{
         }
         
         
-                    if (e.getSource()==colaboradorHub.btnhubAct){ 
+            if (e.getSource()==colaboradorHub.btnhubAct){ 
             actTarea.setVisible(true);
             actTarea.setLocationRelativeTo(null);
             System.err.println("presionado"); 
@@ -308,6 +308,24 @@ public class ctrlGestionTareas implements ActionListener{
          }
         
     }
+      //asignar colaborador
+        if (e.getSource()==adminHub.btnAsignarTarea){
+          asignarTareaForm.setVisible(true);
+          asignarTareaForm.setLocationRelativeTo(actTarea);
+      }  
+       
+        if(e.getSource()==asignarTareaForm.btnAsignar){
+            String colaborador=asignarTareaForm.txtColaboradorAsignar.getText();
+            int id=Integer.parseInt(asignarTareaForm.txtTareaAsignar.getText());
+            boolean completado=consultas.asignarTarea(id, colaborador);
+        if (completado==true){ 
+            JOptionPane.showMessageDialog(null, "Responable Actualizado Correctamente"); 
+            llenarTablaAdmin();
+        }else{ 
+            JOptionPane.showMessageDialog(null, "Responsable no Actualizado");
+         }
+        }
+        
     }
     
    
