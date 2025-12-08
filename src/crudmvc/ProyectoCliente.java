@@ -23,8 +23,11 @@ public class ProyectoCliente {
         Sentencias modC=new Sentencias();
         frmInicioSesion frmINI=new frmInicioSesion();
         frmCrearCuenta frmCC=new frmCrearCuenta();
+        frmRegistrarProyectoAdmin frmRP=new frmRegistrarProyectoAdmin();
+        frmAdministradorhub frmAH = new frmAdministradorhub();
+        frmRegistrarTarea frmRT = new frmRegistrarTarea();
         
-        ctrlGestionTareas ctrl=new ctrlGestionTareas(mod, modC, frmINI,frmCC);
+        ctrlGestionTareas ctrl=new ctrlGestionTareas(mod, modC, frmINI,frmCC, frmRP, frmAH, frmRT);
         ctrl.iniciar();
         frmINI.setVisible(true);     
     }

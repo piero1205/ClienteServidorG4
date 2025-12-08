@@ -12,17 +12,13 @@ import java.util.ArrayList;
  * @author Carrillo Díaz
  */
 public class Proyecto {
-    private int id;
     private String nombre;
-    private String descripcion;
     private double costo;
     private ArrayList <Tarea> tareas;
     private ArrayList <Riesgo> riesgos;
 
-    public Proyecto(int id, String nombre, String descripcion, double costo) {
-        this.id = id;
+    public Proyecto( String nombre, double costo) {
         this.nombre = nombre;
-        this.descripcion = descripcion;
         this.costo = costo;
         tareas = new ArrayList<>();
         riesgos = new ArrayList<>();
@@ -32,30 +28,6 @@ public class Proyecto {
         this.costo = costo;
         tareas = new ArrayList<>();
         riesgos = new ArrayList<>();
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
     }
 
     public double getCosto() {
@@ -82,6 +54,15 @@ public class Proyecto {
         this.riesgos = riesgos;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    
     public void insertarTarea(Tarea t){
         tareas.add(t);
     }
@@ -116,9 +97,7 @@ public class Proyecto {
             return false;
         }
         try {
-            this.id = proyecto.getId();
             this.nombre = proyecto.getNombre();
-            this.descripcion = proyecto.getDescripcion();
             this.costo = proyecto.getCosto();
             return true;
         } catch (Exception e) {
@@ -127,15 +106,13 @@ public class Proyecto {
         }
     }
     
-    public boolean eliminarProyecto(int idProyecto) {
+    public boolean eliminarProyecto(String nombreProyecto) {
         try {
-            if (idProyecto <= 0) {
+            if (nombreProyecto != "") {
                 return false;
             }
-            if (this.id == idProyecto) {
-                this.id = 0;
+            if (this.nombre == nombre) {
                 this.nombre = "";
-                this.descripcion = "";
                 this.costo = 0;
                 tareas.clear();
                 riesgos.clear();
@@ -148,14 +125,13 @@ public class Proyecto {
         }
     }
     
-    public boolean actualizarProyecto(int idProyecto, Proyecto proyectoActualizado) {
+    public boolean actualizarProyecto(String nombreProyecto, Proyecto proyectoActualizado) {
         try {
-            if (idProyecto <= 0 || proyectoActualizado == null) {
+            if (nombreProyecto != "" || proyectoActualizado == null) {
                 return false;
             }
-            if (this.id == idProyecto) {
+            if (this.nombre == nombreProyecto) {
                 this.nombre = proyectoActualizado.getNombre() != null ? proyectoActualizado.getNombre() : this.nombre;
-                this.descripcion = proyectoActualizado.getDescripcion() != null ? proyectoActualizado.getDescripcion() : this.descripcion;
                 this.costo = proyectoActualizado.getCosto();
                 return true;
             }

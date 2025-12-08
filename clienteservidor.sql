@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2025 at 09:35 AM
+-- Generation Time: Dec 08, 2025 at 02:52 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,6 +24,58 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `proyecto`
+--
+
+CREATE TABLE `proyecto` (
+  `nombre` varchar(200) NOT NULL,
+  `costo` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `proyecto`
+--
+
+INSERT INTO `proyecto` (`nombre`, `costo`) VALUES
+('Prueba1', 120000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `riesgos`
+--
+
+CREATE TABLE `riesgos` (
+  `proyecto` varchar(200) NOT NULL,
+  `descripcion` varchar(400) NOT NULL,
+  `impacto` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tareas`
+--
+
+CREATE TABLE `tareas` (
+  `proyecto` varchar(200) NOT NULL,
+  `id` int(100) NOT NULL,
+  `estado` varchar(200) NOT NULL,
+  `comentario` varchar(100) NOT NULL,
+  `fecha` date NOT NULL,
+  `responsable` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tareas`
+--
+
+INSERT INTO `tareas` (`proyecto`, `id`, `estado`, `comentario`, `fecha`, `responsable`) VALUES
+('Prueba1', 1, 'Activa', 'Tarea #1', '2025-12-20', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `usuarios`
 --
 
@@ -39,7 +91,31 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`nombre`, `rol`, `correo`, `contra`) VALUES
-('a', 'Admin', 'abc', '1234');
+('a', 'Admin', 'abc', '1234'),
+('b', 'colaborador', 'col12', '4321'),
+('c', 'Colaborador', 'ccolab12', '1234');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `proyecto`
+--
+ALTER TABLE `proyecto`
+  ADD PRIMARY KEY (`nombre`);
+
+--
+-- Indexes for table `riesgos`
+--
+ALTER TABLE `riesgos`
+  ADD PRIMARY KEY (`proyecto`);
+
+--
+-- Indexes for table `tareas`
+--
+ALTER TABLE `tareas`
+  ADD PRIMARY KEY (`proyecto`,`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

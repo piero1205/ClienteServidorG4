@@ -98,5 +98,57 @@ public class Sentencias extends Conexion {
         return listaUsuarios;
     }
     
+    public boolean agregarProyecto(Proyecto proyecto) {
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "INSERT INTO proyecto (nombre, costo) VALUES (?,?)";
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, proyecto.getNombre());
+            ps.setDouble(2, proyecto.getCosto());
+            ps.execute();
+            return true;
+        } catch (SQLException e) {
+            System.err.println(e);
+            return false;
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+    }
+    
+    
+    public boolean agregarTarea(Tarea tarea) {
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "INSERT INTO tareas (id, proyecto, estado, comentario, fecha) VALUES (?,?,?,?,?)";
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, tarea.getId() );
+            ps.setString(2, tarea.getNombre() );
+            ps.setString(3, tarea.getEstado());
+            ps.setString(4, tarea.getComentario());
+            ps.setDate(5, java.sql.Date.valueOf(tarea.getFechaVencimiento()) );
+            ps.execute();
+            return true;
+        } catch (SQLException e) {
+            System.err.println(e);
+            return false;
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+    }
+    
     
 }
