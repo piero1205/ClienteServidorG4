@@ -64,7 +64,7 @@ public class ctrlGestionTareas implements ActionListener{
         this.registrarTarea = regTarea;
         this.registrarRiesgo = regRiesgo;
         this.consultarCosto= consultarCosto;
-        this.asignarTareaForm = asignarTareaAdmin;
+        
         
         this.actTarea=actTarea; 
         this.colaboradorHub=colaboradorHub;
@@ -258,6 +258,7 @@ public class ctrlGestionTareas implements ActionListener{
                  frminicioSesionAgregar.setVisible(true);
                  frminicioSesionAgregar.setLocationRelativeTo(null);
                  buscarProyecto(nom).insertarTarea(tarea);
+                 llenarTablaAdmin();
             } else {
                 JOptionPane.showMessageDialog(null, "Error al guardar la tarea...");
                 

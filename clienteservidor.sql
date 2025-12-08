@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 08, 2025 at 06:09 AM
+-- Generation Time: Dec 08, 2025 at 02:31 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -38,7 +38,8 @@ CREATE TABLE `proyecto` (
 
 INSERT INTO `proyecto` (`nombre`, `costo`) VALUES
 ('Prueba1', 120000),
-('Prueba2', 200000);
+('Prueba2', 200000),
+('Prueba3', 300000);
 
 -- --------------------------------------------------------
 
@@ -79,8 +80,10 @@ CREATE TABLE `tareas` (
 --
 
 INSERT INTO `tareas` (`proyecto`, `id`, `estado`, `comentario`, `fecha`, `responsable`) VALUES
+('Prueba', 1, 'En progreso', 'crear codigo', '2026-01-01', NULL),
 ('Prueba1', 1, 'Activa', 'Tarea #1', '2025-12-20', NULL),
-('Prueba2', 2, 'En progreso', 'Hacer codigo', '2026-06-06', NULL);
+('Prueba1', 3, 'Terminado', '', '2026-02-03', NULL),
+('Prueba2', 2, 'En progreso', 'Hacer codigo', '2026-06-06', 'b');
 
 -- --------------------------------------------------------
 
@@ -118,7 +121,7 @@ ALTER TABLE `proyecto`
 -- Indexes for table `riesgos`
 --
 ALTER TABLE `riesgos`
-  ADD PRIMARY KEY (`proyecto`);
+  ADD PRIMARY KEY (`proyecto`,`descripcion`);
 
 --
 -- Indexes for table `tareas`
