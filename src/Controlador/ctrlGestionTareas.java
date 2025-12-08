@@ -63,6 +63,7 @@ public class ctrlGestionTareas implements ActionListener{
         this.registrarTarea = regTarea;
         this.registrarRiesgo = regRiesgo;
         this.consultarCosto= consultarCosto;
+        this.asignarTareaForm = asignarTareaAdmin;
         
         this.actTarea=actTarea; 
         this.colaboradorHub=colaboradorHub;
