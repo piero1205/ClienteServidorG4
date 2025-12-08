@@ -3,11 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/marco/Desktop/Fidélitas/III%20Cuatri/Programación%20Cliente%20Servidor%20Concurrente/GitHub/ClienteServidorG4/src/Controlador/ctrlGestionTareas.java</file>
-            <file>file:/C:/Users/marco/Desktop/Fidélitas/III%20Cuatri/Programación%20Cliente%20Servidor%20Concurrente/GitHub/ClienteServidorG4/src/Modelo/Tarea.java</file>
-            <file>file:/C:/Users/marco/Desktop/Fidélitas/III%20Cuatri/Programación%20Cliente%20Servidor%20Concurrente/GitHub/ClienteServidorG4/src/Modelo/Riesgo.java</file>
-            <file>file:/C:/Users/marco/Desktop/Fidélitas/III%20Cuatri/Programación%20Cliente%20Servidor%20Concurrente/GitHub/ClienteServidorG4/src/Modelo/Proyecto.java</file>
-            <file>file:/C:/Users/marco/Desktop/Fidélitas/III%20Cuatri/Programación%20Cliente%20Servidor%20Concurrente/GitHub/ClienteServidorG4/src/Modelo/Sentencias.java</file>
+            <file>file:/C:/Users/Paqui/OneDrive/Escritorio/ClienteServidorG4-main/ClienteServidorG4-main/src/Vista/frmColaboradorhub.java</file>
+            <file>file:/C:/Users/Paqui/OneDrive/Escritorio/ClienteServidorG4-main/ClienteServidorG4-main/src/Vista/frmActualizarTareaColaborador.java</file>
+            <file>file:/C:/Users/Paqui/OneDrive/Escritorio/ClienteServidorG4-main/ClienteServidorG4-main/src/Controlador/ctrlGestionTareas.java</file>
+            <file>file:/C:/Users/Paqui/OneDrive/Escritorio/ClienteServidorG4-main/ClienteServidorG4-main/src/crudmvc/ProyectoCliente.java</file>
+            <file>file:/C:/Users/Paqui/OneDrive/Escritorio/ClienteServidorG4-main/ClienteServidorG4-main/src/Modelo/Sentencias.java</file>
+            <file>file:/C:/Users/Paqui/OneDrive/Escritorio/ClienteServidorG4-main/ClienteServidorG4-main/src/Vista/frmRegistrarTarea.java</file>
         </group>
     </open-files>
 </project-private>

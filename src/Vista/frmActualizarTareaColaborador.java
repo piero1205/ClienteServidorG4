@@ -33,6 +33,7 @@ public class frmActualizarTareaColaborador extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtComentarioTarea = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        btnActualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -46,6 +47,8 @@ public class frmActualizarTareaColaborador extends javax.swing.JFrame {
         jLabel3.setText("Estado");
 
         jLabel4.setText("Comentario");
+
+        btnActualizar.setText("Actualizar Tarea");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -68,6 +71,10 @@ public class frmActualizarTareaColaborador extends javax.swing.JFrame {
                     .addComponent(txtTareaEditar)
                     .addComponent(txtComentarioTarea, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE))
                 .addContainerGap(88, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnActualizar)
+                .addGap(193, 193, 193))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -86,7 +93,9 @@ public class frmActualizarTareaColaborador extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtComentarioTarea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnActualizar)
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         pack();
@@ -128,12 +137,13 @@ public class frmActualizarTareaColaborador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cmbEstadoTarea;
+    public javax.swing.JButton btnActualizar;
+    public javax.swing.JComboBox<String> cmbEstadoTarea;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField txtComentarioTarea;
-    private javax.swing.JTextField txtTareaEditar;
+    public javax.swing.JTextField txtComentarioTarea;
+    public javax.swing.JTextField txtTareaEditar;
     // End of variables declaration//GEN-END:variables
 }

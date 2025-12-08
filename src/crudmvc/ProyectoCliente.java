@@ -26,8 +26,10 @@ public class ProyectoCliente {
         frmRegistrarProyectoAdmin frmRP=new frmRegistrarProyectoAdmin();
         frmAdministradorhub frmAH = new frmAdministradorhub();
         frmRegistrarTarea frmRT = new frmRegistrarTarea();
+        frmColaboradorhub frmCH=new frmColaboradorhub();
+        frmActualizarTareaColaborador frmATC=new frmActualizarTareaColaborador();
         
-        ctrlGestionTareas ctrl=new ctrlGestionTareas(mod, modC, frmINI,frmCC, frmRP, frmAH, frmRT);
+        ctrlGestionTareas ctrl=new ctrlGestionTareas(mod, modC, frmINI,frmCC, frmRP, frmAH, frmRT,frmATC,frmCH);
         ctrl.iniciar();
         frmINI.setVisible(true);     
     }

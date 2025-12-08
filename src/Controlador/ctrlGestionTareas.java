@@ -26,12 +26,16 @@ public class ctrlGestionTareas implements ActionListener{
     private final frmAdministradorhub adminHub;
     private final frmRegistrarProyectoAdmin registrarProyecto;
     private final frmRegistrarTarea registrarTarea;
+    private final frmActualizarTareaColaborador actTarea; 
+    private final frmColaboradorhub colaboradorHub;
     
     public ctrlGestionTareas(Usuarios modelo
                             , Sentencias consultas, frmInicioSesion inicioSesion1, frmCrearCuenta crearCuenta1
                             , frmRegistrarProyectoAdmin registrarProyecto
                             , frmAdministradorhub adminHub
-                            , frmRegistrarTarea regTarea) {
+                            , frmRegistrarTarea regTarea
+                            , frmActualizarTareaColaborador actTarea
+                            , frmColaboradorhub colaboradorHub) {
         this.modelo = modelo;
         this.consultas = consultas;
         this.inicioSesion = inicioSesion1;
@@ -39,6 +43,8 @@ public class ctrlGestionTareas implements ActionListener{
         this.registrarProyecto=registrarProyecto;
         this.adminHub = adminHub;
         this.registrarTarea = regTarea;
+        this.actTarea=actTarea; 
+        this.colaboradorHub=colaboradorHub;
         this.inicioSesion.btnIniciarSesión.addActionListener(this);
         this.inicioSesion.btnCrearCuenta.addActionListener(this);
         this.crearCuenta.btnCrearCuenta.addActionListener(this);
@@ -49,6 +55,8 @@ public class ctrlGestionTareas implements ActionListener{
         this.registrarProyecto.btnCrearProyecto.addActionListener(this);
         this.registrarTarea.btnCrearTarea.addActionListener(this);
         
+        this.colaboradorHub.btnhubAct.addActionListener(this); 
+        this.actTarea.btnActualizar.addActionListener(this);
     }
     
     public void iniciar() {
@@ -68,9 +76,8 @@ public class ctrlGestionTareas implements ActionListener{
                     adminHub.setLocationRelativeTo(null);
                 } else if (rol.equalsIgnoreCase("colaborador")) {
                     JOptionPane.showMessageDialog(null, "Sesión Iniciada como Colaborador");
-                    frmColaboradorhub frmColaborador = new frmColaboradorhub();
-                    frmColaborador.setVisible(true);
-                    frmColaborador.setLocationRelativeTo(null);
+                    colaboradorHub.setVisible(true);
+                    colaboradorHub.setLocationRelativeTo(null); 
                 }
             } else {
                 
@@ -173,6 +180,26 @@ public class ctrlGestionTareas implements ActionListener{
             }
             
         }
+        
+        if (e.getSource()==colaboradorHub.btnhubAct){ 
+            actTarea.setVisible(true);
+            actTarea.setLocationRelativeTo(null);
+            System.err.println("presionado"); 
+        }
+        
+        if (e.getSource()==actTarea.btnActualizar){ 
+         int id=Integer.parseInt(actTarea.txtTareaEditar.getText());
+        String comentario=actTarea.txtComentarioTarea.getText(); 
+        String estado=actTarea.cmbEstadoTarea.getSelectedItem().toString(); 
+        boolean completado=consultas.ActualizarTareaColaborador(id, estado, comentario); 
+        if (completado==true){ 
+            JOptionPane.showMessageDialog(null, "Tarea Actualizada Correctamente"); 
+        
+        }else{ 
+            JOptionPane.showMessageDialog(null, "Tarea no Actualizada");
+         }
+        
     }
     
+}
 }

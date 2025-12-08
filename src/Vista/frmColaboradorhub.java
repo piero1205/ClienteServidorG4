@@ -30,7 +30,7 @@ public class frmColaboradorhub extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaColaborador = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        btnhubAct = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -52,7 +52,7 @@ public class frmColaboradorhub extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tablaColaborador);
 
-        jButton2.setText("Actualizar Tarea");
+        btnhubAct.setText("Actualizar Tarea");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -67,7 +67,7 @@ public class frmColaboradorhub extends javax.swing.JFrame {
                         .addContainerGap())))
             .addGroup(layout.createSequentialGroup()
                 .addGap(353, 353, 353)
-                .addComponent(jButton2)
+                .addComponent(btnhubAct)
                 .addGap(0, 357, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -78,7 +78,7 @@ public class frmColaboradorhub extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addComponent(btnhubAct)
                 .addContainerGap(8, Short.MAX_VALUE))
         );
 
@@ -121,8 +121,8 @@ public class frmColaboradorhub extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnhubAct;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable tablaColaborador;
