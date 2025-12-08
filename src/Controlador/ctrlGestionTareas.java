@@ -10,6 +10,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.sql.ResultSet;
 
 /**
  *
@@ -81,4 +82,34 @@ public class ctrlGestionTareas implements ActionListener{
             }
         }
     }
+    
+    public DefaultTableModel generarReporte(String nombreProyecto){
+        
+        String columnas[] = {
+            "Proyecto", "Tarea", "Estado", "Responsable", "Vencimiento", "Riesgo", "Costo", "Comentario"          
+        };
+        
+        DefaultTableModel m = new DefaultTableModel(null, columnas);
+        
+        try{
+            ResultSet rs = consultas.consultarProyecto(nombreProyecto);
+            
+            while (rs.next()) {
+                Object fila[] = {
+                    rs.getString("proyecto"),
+                    rs.getString("tarea"),
+                    rs.getString("estado"),
+                    rs.getString("responsable"),
+                    rs.getString("vencimiento"),
+                    rs.getString("riesgo"),
+                    rs.getString("costo"),
+                    rs.getString("comentario")                                  
+                };
+                m.addRow(fila);          
+            }                     
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error en generar reporte");
+        }
+        return m;                    
+    }     
 }

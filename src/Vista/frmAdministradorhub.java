@@ -48,7 +48,7 @@ public class frmAdministradorhub extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Proyecto", "Tarea", "Estado", "Responsable", "Cronograma", "Riesgo", "Costo", "Comentarios"
+                "Proyecto", "Tarea", "Estado", "Responsable", "Vencimiento", "Riesgo", "Costo", "Comentarios"
             }
         ));
         jScrollPane1.setViewportView(tablaAdmin);
@@ -61,6 +61,11 @@ public class frmAdministradorhub extends javax.swing.JFrame {
         btnRegistrarProyecto.setText("Registrar Proyecto");
 
         btnGenerarReporte.setText("Generar Reporte");
+        btnGenerarReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarReporteActionPerformed(evt);
+            }
+        });
 
         btnEvaluarCostos.setText("Evaluar Costos");
 
@@ -102,6 +107,11 @@ public class frmAdministradorhub extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReporteActionPerformed
+        // TODO add your handling code here:
+    new frmGenerarReporteAdmin().setVisible(true);           
+    }//GEN-LAST:event_btnGenerarReporteActionPerformed
 
     /**
      * @param args the command line arguments

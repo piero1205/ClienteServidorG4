@@ -4,17 +4,24 @@
  */
 package Vista;
 
+import Controlador.ctrlGestionTareas;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Jason
  */
 public class frmGenerarReporteAdmin extends javax.swing.JFrame {
+    
+    
+    private ctrlGestionTareas control;
 
     /**
      * Creates new form frmGenerarReporteAdmin
      */
     public frmGenerarReporteAdmin() {
         initComponents();
+        this.control = control;
     }
 
     /**
@@ -50,7 +57,7 @@ public class frmGenerarReporteAdmin extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Proyecto", "Tarea", "Estado", "Responsable", "Cronograma", "Riesgo", "Costo", "Comentarios"
+                "Proyecto", "Tarea", "Estado", "Responsable", "Vencimiento", "Riesgo", "Costo", "Comentarios"
             }
         ));
         jScrollPane1.setViewportView(tablaAdmin);
@@ -58,6 +65,11 @@ public class frmGenerarReporteAdmin extends javax.swing.JFrame {
         jLabel2.setText("Proyecto a consultar");
 
         btnProyectoAConsultar.setText("Consultar");
+        btnProyectoAConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProyectoAConsultarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,6 +107,19 @@ public class frmGenerarReporteAdmin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnProyectoAConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProyectoAConsultarActionPerformed
+        // TODO add your handling code here:
+        String nombreProyecto= txtProyectoAConsultarAdmin.getText().trim();
+        
+        if(nombreProyecto.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Ingrese el nombre del proyecto");
+            return;
+        }
+        
+        tablaAdmin.setModel(control.generarReporte(nombreProyecto));
+        
+    }//GEN-LAST:event_btnProyectoAConsultarActionPerformed
 
     /**
      * @param args the command line arguments
