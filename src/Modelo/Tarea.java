@@ -12,40 +12,19 @@ import java.time.LocalDate;
  */
 public class Tarea {
     private int id;
-    private String responsable;
+    private String nombre;
     private String estado;
-    private String comentario;
-    private LocalDate fechaVencimiento;//yyyy-mm-dd
+    private LocalDate fechaVencimiento;
 
-    public Tarea(int id, String responsable, String estado, String comentario, LocalDate fechaVencimiento) {
+    public Tarea(int id, String nombre, String estado, LocalDate fechaVencimiento) {
         this.id = id;
-        this.responsable = responsable;
+        this.nombre = nombre;
         this.estado = estado;
-        this.comentario = comentario;
         this.fechaVencimiento = fechaVencimiento;
     }
 
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
+    public Tarea(String estado, LocalDate fechaVencimiento) {
         this.estado = estado;
-    }
-
-    public String getComentario() {
-        return comentario;
-    }
-
-    public void setComentario(String comentario) {
-        this.comentario = comentario;
-    }
-
-    public LocalDate getFechaVencimiento() {
-        return fechaVencimiento;
-    }
-
-    public void setFechaVencimiento(LocalDate fechaVencimiento) {
         this.fechaVencimiento = fechaVencimiento;
     }
 
@@ -57,14 +36,27 @@ public class Tarea {
         this.id = id;
     }
 
-    public String getResponsable() {
-        return responsable;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setResponsable(String responsable) {
-        this.responsable = responsable;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    
-    
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public LocalDate getFechaVencimiento() {
+        return fechaVencimiento;
+    }
+
+    public void setFechaVencimiento(LocalDate fechaVencimiento) {
+        this.fechaVencimiento = fechaVencimiento;
+    }
 }
