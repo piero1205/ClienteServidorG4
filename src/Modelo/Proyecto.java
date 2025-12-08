@@ -70,6 +70,22 @@ public class Proyecto {
     public void insertarRiesgo(Riesgo r){
         riesgos.add(r);
     }
+
+    public boolean asignarTarea(Tarea t) {
+        if (t == null) {
+            return false;
+        }
+        for (Tarea ex : tareas) {
+            if (ex.getId() == t.getId()) {
+                return false;
+            }
+        }
+        if (t.getEstado() == null || t.getEstado().isEmpty()) {
+            t.setEstado("Asignada");
+        }
+        tareas.add(t);
+        return true;
+    }
     
     public void calcularCosto(){
         double costo = 0.0d;
