@@ -46,8 +46,7 @@ public class ctrlGestionTareas implements ActionListener{
                             , frmAdministradorhub adminHub
                             , frmRegistrarTarea regTarea
                             , frmCostosAdmin consultarCosto
-                            , frmRegistrarRiesgo regRiesgo) {
-        
+                            , frmRegistrarRiesgo regRiesgo
                             , frmAsignarTareaAdmin asignarTareaAdmin) {
         this.modelo = modelo;
         this.consultas = consultas;

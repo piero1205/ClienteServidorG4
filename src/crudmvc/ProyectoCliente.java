@@ -28,8 +28,9 @@ public class ProyectoCliente {
         frmRegistrarTarea frmRT = new frmRegistrarTarea();
         frmCostosAdmin frmCCo = new frmCostosAdmin();
         frmRegistrarRiesgo frmRR = new frmRegistrarRiesgo();
+        frmAsignarTareaAdmin frmAT = new frmAsignarTareaAdmin();
         
-        ctrlGestionTareas ctrl=new ctrlGestionTareas(mod, modC, frmINI,frmCC, frmRP, frmAH, frmRT, frmCCo, frmRR);
+        ctrlGestionTareas ctrl=new ctrlGestionTareas(mod, modC, frmINI,frmCC, frmRP, frmAH, frmRT, frmCCo, frmRR, frmAT);
         ctrl.iniciar();
         frmINI.setVisible(true);     
     }
