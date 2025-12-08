@@ -13,19 +13,30 @@ import java.time.LocalDate;
 public class Tarea {
     private int id;
     private String nombre;
-    private String estado;
+    private String estado;   
+    private String comentario;
+
     private LocalDate fechaVencimiento;
 
-    public Tarea(int id, String nombre, String estado, LocalDate fechaVencimiento) {
+    public Tarea(int id, String nombre, String estado, String Comentario, LocalDate fechaVencimiento) {
         this.id = id;
         this.nombre = nombre;
         this.estado = estado;
+        this.comentario = Comentario;
         this.fechaVencimiento = fechaVencimiento;
     }
 
     public Tarea(String estado, LocalDate fechaVencimiento) {
         this.estado = estado;
         this.fechaVencimiento = fechaVencimiento;
+    }
+
+    public String getComentario() {
+        return comentario;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
     }
 
     public int getId() {

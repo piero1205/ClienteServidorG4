@@ -33,6 +33,7 @@ public class frmAdministradorhub extends javax.swing.JFrame {
         btnRegistrarProyecto = new javax.swing.JButton();
         btnGenerarReporte = new javax.swing.JButton();
         btnEvaluarCostos = new javax.swing.JButton();
+        btnRegistrarTarea = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -64,6 +65,13 @@ public class frmAdministradorhub extends javax.swing.JFrame {
 
         btnEvaluarCostos.setText("Evaluar Costos");
 
+        btnRegistrarTarea.setText("Registrar Tarea");
+        btnRegistrarTarea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarTareaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,11 +82,13 @@ public class frmAdministradorhub extends javax.swing.JFrame {
                 .addContainerGap())
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(112, 112, 112)
+                .addGap(33, 33, 33)
                 .addComponent(btnAsignarTarea)
-                .addGap(63, 63, 63)
+                .addGap(38, 38, 38)
                 .addComponent(btnRegistrarProyecto)
-                .addGap(120, 120, 120)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRegistrarTarea, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(94, 94, 94)
                 .addComponent(btnGenerarReporte)
                 .addGap(83, 83, 83)
                 .addComponent(btnEvaluarCostos)
@@ -90,18 +100,25 @@ public class frmAdministradorhub extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAsignarTarea)
                     .addComponent(btnRegistrarProyecto)
                     .addComponent(btnGenerarReporte)
-                    .addComponent(btnEvaluarCostos))
+                    .addComponent(btnEvaluarCostos)
+                    .addComponent(btnRegistrarTarea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
+        btnRegistrarTarea.getAccessibleContext().setAccessibleDescription("");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRegistrarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarTareaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegistrarTareaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -143,6 +160,7 @@ public class frmAdministradorhub extends javax.swing.JFrame {
     public javax.swing.JButton btnEvaluarCostos;
     public javax.swing.JButton btnGenerarReporte;
     public javax.swing.JButton btnRegistrarProyecto;
+    public javax.swing.JButton btnRegistrarTarea;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable tablaAdmin;
