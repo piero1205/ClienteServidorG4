@@ -4,14 +4,19 @@
  */
 package Controlador;
 import Modelo.Proyecto;
+import Modelo.Riesgo;
 import Modelo.Sentencias;
 import Modelo.Tarea;
 import Modelo.Usuarios;
 import Vista.*;
+import java.awt.Color;
 import java.awt.event.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,6 +24,9 @@ import javax.swing.table.DefaultTableModel;
  * @author Jason
  */
 public class ctrlGestionTareas implements ActionListener{
+    
+    ArrayList<Proyecto> proyectos;
+    
     private final Usuarios modelo;
     private final Sentencias consultas;
     private final frmInicioSesion inicioSesion;
@@ -26,29 +34,49 @@ public class ctrlGestionTareas implements ActionListener{
     private final frmAdministradorhub adminHub;
     private final frmRegistrarProyectoAdmin registrarProyecto;
     private final frmRegistrarTarea registrarTarea;
+    private final frmCostosAdmin consultarCosto;
+    private final frmRegistrarRiesgo registrarRiesgo;
     
     public ctrlGestionTareas(Usuarios modelo
-                            , Sentencias consultas, frmInicioSesion inicioSesion1, frmCrearCuenta crearCuenta1
+                            , Sentencias consultas
+                            , frmInicioSesion inicioSesion1
+                            , frmCrearCuenta crearCuenta1
                             , frmRegistrarProyectoAdmin registrarProyecto
                             , frmAdministradorhub adminHub
-                            , frmRegistrarTarea regTarea) {
+                            , frmRegistrarTarea regTarea
+                            , frmCostosAdmin consultarCosto
+                            , frmRegistrarRiesgo regRiesgo) {
+        
         this.modelo = modelo;
         this.consultas = consultas;
+        this.proyectos = consultas.cargarProyectos();
+        
         this.inicioSesion = inicioSesion1;
         this.crearCuenta=crearCuenta1;
         this.registrarProyecto=registrarProyecto;
         this.adminHub = adminHub;
         this.registrarTarea = regTarea;
+        this.registrarRiesgo = regRiesgo;
+        this.consultarCosto= consultarCosto;
+        
         this.inicioSesion.btnIniciarSesión.addActionListener(this);
         this.inicioSesion.btnCrearCuenta.addActionListener(this);
         this.crearCuenta.btnCrearCuenta.addActionListener(this);
         
         this.adminHub.btnRegistrarProyecto.addActionListener(this);
         this.adminHub.btnRegistrarTarea.addActionListener(this);
+        this.adminHub.btnRegRiesgo.addActionListener(this);
         
         this.registrarProyecto.btnCrearProyecto.addActionListener(this);
         this.registrarTarea.btnCrearTarea.addActionListener(this);
+        this.registrarRiesgo.btnCrearRiesgo.addActionListener(this);
         
+        this.adminHub.btnEvaluarCostos.addActionListener(this);
+        this.consultarCosto.btnConsultarCostoAdmin.addActionListener(this);
+        
+        this.registrarRiesgo.txtImpacto.addActionListener(this);
+        
+        llenarTablaAdmin();
     }
     
     public void iniciar() {
@@ -76,6 +104,31 @@ public class ctrlGestionTareas implements ActionListener{
                 
             }
 
+        }
+        
+        if(e.getSource()==registrarRiesgo.txtImpacto){
+            
+            String[] colores = {"Verde", "Amarillo", "Rojo"};
+            JComboBox<String> combo = registrarRiesgo.txtImpacto;
+            
+            
+            String s = (String) combo.getSelectedItem();
+            if (s == null) {
+                combo.setForeground(Color.BLACK);
+            } else {
+                s = s.trim().toLowerCase();
+                if (s.equals("bajo")) {
+                    combo.setForeground(new Color(0, 128, 0));
+                } else if (s.equals("medio")) {
+                    combo.setForeground(new Color(255, 165, 0));
+                } else if (s.equals("alto")) {
+                    combo.setForeground(Color.RED);
+                } else {
+                    combo.setForeground(Color.BLACK);
+                }
+            }
+
+            
         }
         
         if(e.getSource()==inicioSesion.btnCrearCuenta){
@@ -119,11 +172,12 @@ public class ctrlGestionTareas implements ActionListener{
             
             Proyecto nuevoP = new Proyecto(nom,cost);
             
-            if (consultas.agregarProyecto(nuevoP) ) {
+            if ( consultas.agregarProyecto(nuevoP) ) {
                 JOptionPane.showMessageDialog(null, "Proyecto Creado!");
                  frmInicioSesion frminicioSesionAgregar=new frmInicioSesion();
                  frminicioSesionAgregar.setVisible(true);
                  frminicioSesionAgregar.setLocationRelativeTo(null);
+                 proyectos.add(nuevoP);
             } else {
                 JOptionPane.showMessageDialog(null, "Error al guardar el proyecto...");
                 
@@ -167,12 +221,113 @@ public class ctrlGestionTareas implements ActionListener{
                  frmInicioSesion frminicioSesionAgregar=new frmInicioSesion();
                  frminicioSesionAgregar.setVisible(true);
                  frminicioSesionAgregar.setLocationRelativeTo(null);
+                 buscarProyecto(nom).insertarTarea(tarea);
             } else {
                 JOptionPane.showMessageDialog(null, "Error al guardar la tarea...");
                 
             }
             
         }
+        
+        //Registrar Riesgo
+        
+        if(e.getSource()==adminHub.btnRegRiesgo ){
+            registrarRiesgo.setVisible(true);
+            registrarRiesgo.setLocationRelativeTo(null);
+        }
+        
+        if(e.getSource()== registrarRiesgo.btnCrearRiesgo ){
+            String proy = registrarRiesgo.txtNombreProyecto.getText();
+            String imp = registrarRiesgo.txtImpacto.getSelectedItem().toString();
+            String desc = registrarRiesgo.txtComentario.getText();
+            
+            Riesgo riesgo = new Riesgo(desc,imp);
+            
+            if (consultas.agregarRiesgo(proy, riesgo) ) {
+                JOptionPane.showMessageDialog(null, "Riesgo Creado!");
+                 frmInicioSesion frminicioSesionAgregar=new frmInicioSesion();
+                 frminicioSesionAgregar.setVisible(true);
+                 frminicioSesionAgregar.setLocationRelativeTo(null);
+                 buscarProyecto(proy).insertarRiesgo(riesgo);
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al guardar el riesgo...");
+                
+            }
+            
+        }
+        
+        //Evaluar costos
+        if(e.getSource()==adminHub.btnEvaluarCostos ){
+            consultarCosto.setVisible(true);
+            consultarCosto.setLocationRelativeTo(null);
+        }
+        if(e.getSource()== consultarCosto.btnConsultarCostoAdmin){
+            
+            Proyecto p = buscarProyecto(this.consultarCosto.txtProyectoConsultarCostoAdmin.getText());
+            if(p == null){
+                JOptionPane.showMessageDialog(null, "Proyecto "+this.consultarCosto.txtProyectoConsultarCostoAdmin.getText()+" no existe ");
+            } else {
+                this.consultarCosto.txtMostrarCosto.setText( String.valueOf( p.getCosto() ));
+            }
+        
+        }
     }
+    
+   
+    public Proyecto buscarProyecto(String nombreProyecto) {
+        if (proyectos == null || nombreProyecto == null) {
+            return null;
+        }
+        for (Proyecto p : proyectos) {
+            if (p.getNombre().equalsIgnoreCase(nombreProyecto)) {
+                return p;
+            }
+        }
+        return null;
+    }
+    
+    // Llenar Cronograma
+    
+    public void llenarTablaAdmin() {
+        JTable tablaAdmin = this.adminHub.tablaAdmin;
+        if (tablaAdmin == null) return;
+
+        // Define encabezados en el mismo orden que obtenerProyectoTareas()
+        String[] columnas = {
+            "Proyecto",
+            "Costo",
+            "Tarea",
+            "Estado",
+            "Responsable",
+            "Fecha Vencimiento",
+            "Comentarios"
+        };
+
+        DefaultTableModel modelo = new DefaultTableModel(columnas, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+
+            @Override
+            public Class<?> getColumnClass(int columnIndex) {
+                switch (columnIndex) {
+                    case 1: return Double.class; // Costo
+                    case 2: return Integer.class; // ID Tarea
+                    default: return String.class;
+                }
+            }
+        };
+
+        List<Object[]> filas = consultas.obtenerCronograma();
+        for (Object[] fila : filas) {
+            modelo.addRow(fila);
+        }
+
+        tablaAdmin.setModel(modelo);
+
+    }
+
+
     
 }
