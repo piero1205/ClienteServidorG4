@@ -26,12 +26,14 @@ public class ctrlGestionTareas implements ActionListener{
     private final frmAdministradorhub adminHub;
     private final frmRegistrarProyectoAdmin registrarProyecto;
     private final frmRegistrarTarea registrarTarea;
+    private final frmAsignarTareaAdmin asignarTareaForm;
     
     public ctrlGestionTareas(Usuarios modelo
                             , Sentencias consultas, frmInicioSesion inicioSesion1, frmCrearCuenta crearCuenta1
                             , frmRegistrarProyectoAdmin registrarProyecto
                             , frmAdministradorhub adminHub
-                            , frmRegistrarTarea regTarea) {
+                            , frmRegistrarTarea regTarea
+                            , frmAsignarTareaAdmin asignarTareaAdmin) {
         this.modelo = modelo;
         this.consultas = consultas;
         this.inicioSesion = inicioSesion1;
@@ -39,16 +41,19 @@ public class ctrlGestionTareas implements ActionListener{
         this.registrarProyecto=registrarProyecto;
         this.adminHub = adminHub;
         this.registrarTarea = regTarea;
+        this.asignarTareaForm = asignarTareaAdmin;
         this.inicioSesion.btnIniciarSesión.addActionListener(this);
         this.inicioSesion.btnCrearCuenta.addActionListener(this);
         this.crearCuenta.btnCrearCuenta.addActionListener(this);
         
         this.adminHub.btnRegistrarProyecto.addActionListener(this);
         this.adminHub.btnRegistrarTarea.addActionListener(this);
+        this.adminHub.btnAsignarTarea.addActionListener(this);
         
         this.registrarProyecto.btnCrearProyecto.addActionListener(this);
         this.registrarTarea.btnCrearTarea.addActionListener(this);
-        this.adminHub.btnAsignarTarea.addActionListener(this);
+        this.asignarTareaForm.btnAsignar.addActionListener(this);
+        
         
     }
     
