@@ -144,6 +144,7 @@ public class frmInicioSesion extends javax.swing.JFrame {
 
     private void btnCrearCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCuentaActionPerformed
         // TODO add your handling code here:
+        new frmCrearCuenta().setVisible(true);
         
     }//GEN-LAST:event_btnCrearCuentaActionPerformed
 
