@@ -26,6 +26,7 @@ public class frmAdministradorhub extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaAdmin = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -34,28 +35,31 @@ public class frmAdministradorhub extends javax.swing.JFrame {
         btnGenerarReporte = new javax.swing.JButton();
         btnEvaluarCostos = new javax.swing.JButton();
         btnRegistrarTarea = new javax.swing.JButton();
+        btnRegRiesgo = new javax.swing.JButton();
+
+        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tablaAdmin.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Proyecto", "Tarea", "Estado", "Responsable", "Cronograma", "Riesgo", "Costo", "Comentarios"
+                "Proyecto", "Costo", "Tarea", "Estado", "Responsable", "Fecha Vencimiento", "Comentarios"
             }
         ));
         jScrollPane1.setViewportView(tablaAdmin);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Admin");
+        jLabel1.setText("Cronograma");
 
         btnAsignarTarea.setText("Asignar Tareas");
 
@@ -72,27 +76,36 @@ public class frmAdministradorhub extends javax.swing.JFrame {
             }
         });
 
+        btnRegRiesgo.setText("Registrar Riesgo");
+        btnRegRiesgo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegRiesgoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 939, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 804, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnAsignarTarea)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnRegistrarProyecto)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnRegistrarTarea, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnRegRiesgo)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnGenerarReporte)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEvaluarCostos)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(btnAsignarTarea)
-                .addGap(38, 38, 38)
-                .addComponent(btnRegistrarProyecto)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnRegistrarTarea, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(94, 94, 94)
-                .addComponent(btnGenerarReporte)
-                .addGap(83, 83, 83)
-                .addComponent(btnEvaluarCostos)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,7 +120,8 @@ public class frmAdministradorhub extends javax.swing.JFrame {
                     .addComponent(btnRegistrarProyecto)
                     .addComponent(btnGenerarReporte)
                     .addComponent(btnEvaluarCostos)
-                    .addComponent(btnRegistrarTarea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnRegistrarTarea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnRegRiesgo))
                 .addContainerGap())
         );
 
@@ -119,6 +133,10 @@ public class frmAdministradorhub extends javax.swing.JFrame {
     private void btnRegistrarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarTareaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRegistrarTareaActionPerformed
+
+    private void btnRegRiesgoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegRiesgoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegRiesgoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,8 +177,10 @@ public class frmAdministradorhub extends javax.swing.JFrame {
     public javax.swing.JButton btnAsignarTarea;
     public javax.swing.JButton btnEvaluarCostos;
     public javax.swing.JButton btnGenerarReporte;
+    public javax.swing.JButton btnRegRiesgo;
     public javax.swing.JButton btnRegistrarProyecto;
     public javax.swing.JButton btnRegistrarTarea;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable tablaAdmin;

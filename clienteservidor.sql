@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 08, 2025 at 02:52 AM
+-- Generation Time: Dec 08, 2025 at 06:09 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -37,7 +37,8 @@ CREATE TABLE `proyecto` (
 --
 
 INSERT INTO `proyecto` (`nombre`, `costo`) VALUES
-('Prueba1', 120000);
+('Prueba1', 120000),
+('Prueba2', 200000);
 
 -- --------------------------------------------------------
 
@@ -50,6 +51,13 @@ CREATE TABLE `riesgos` (
   `descripcion` varchar(400) NOT NULL,
   `impacto` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `riesgos`
+--
+
+INSERT INTO `riesgos` (`proyecto`, `descripcion`, `impacto`) VALUES
+('Prueba1', 'riesgo de prueba 1', 'Medio');
 
 -- --------------------------------------------------------
 
@@ -71,7 +79,8 @@ CREATE TABLE `tareas` (
 --
 
 INSERT INTO `tareas` (`proyecto`, `id`, `estado`, `comentario`, `fecha`, `responsable`) VALUES
-('Prueba1', 1, 'Activa', 'Tarea #1', '2025-12-20', NULL);
+('Prueba1', 1, 'Activa', 'Tarea #1', '2025-12-20', NULL),
+('Prueba2', 2, 'En progreso', 'Hacer codigo', '2026-06-06', NULL);
 
 -- --------------------------------------------------------
 
